@@ -17,13 +17,15 @@ function storeEntry(y, m, d, hh, mm, ss, entry) {
   if (entry === "erase all") {
     clearLDData();
   } else {
-    try {
-      var label = createLabel(YMDToEpoch(y, m, d, hh, mm, ss));
-      localStorage[label] = localStorage[label] || "";
-      localStorage[label] += entry + "|";
-    } catch (e) {
-      log("Error adding entry!");
-      log(e);
+    if (entry.trim() !== "") {
+      try {
+        var label = createLabel(YMDToEpoch(y, m, d, hh, mm, ss));
+        localStorage[label] = localStorage[label] || "";
+        localStorage[label] += entry + "|";
+      } catch (e) {
+        log("Error adding entry!");
+        log(e);
+      }
     }
   }
 }
