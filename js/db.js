@@ -33,7 +33,7 @@ function filterEntries(from, to) {
   for (var i = localStorage.length - 1; i >= 0; i--) {
     var key = localStorage.key(i);
     if (key.substr(0, 2) === "LD") {
-      var labelEpoch = parseLabel(key);
+      var labelEpoch = parseInt(parseLabel(key));
       var oneDay = 24 * 60 * 60 * 1000;
       if (from < labelEpoch && labelEpoch < to + oneDay) {
         var shortDate = epochToShort(parseInt(labelEpoch));

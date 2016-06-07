@@ -73,3 +73,7 @@ document.getElementById("filterToday").addEventListener("click", function() {
 
   document.getElementById("filter").click();
 });
+
+document.getElementById("timeNow").addEventListener("click", function() {
+  setAddSelectsToNow();
+});
