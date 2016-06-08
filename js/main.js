@@ -1,5 +1,5 @@
 setAddSelectsToNow();
 setFromSelectsToStartOfMonth();
-setToSelectsToNextMonth();
+setToSelectsToEndOfMonth();
 
 document.getElementById("filter").click();

@@ -35,9 +35,26 @@ function setFromSelectsToToday() {
 
 function setToSelectsToNextMonth() {
   var now = new Date();
-  makeSelection("to_year", now.getFullYear());
-  makeSelection("to_month", now.getMonth() + 2);
+  var nextMonth = now.getMonth() + 1;
+
+  var setAsYear = now.getFullYear() + Math.floor(nextMonth / 11);
+  var setAsMonth = nextMonth % 12;
+
+  makeSelection("to_year", setAsYear);
+  makeSelection("to_month", setAsMonth + 1);  // select starts at 1
   makeSelection("to_day", 1);
+}
+
+
+function setToSelectsToEndOfMonth() {
+  var now = new Date();
+  
+  var month = now.getMonth() + 1;
+  var year = now.getFullYear();
+
+  makeSelection("to_year", year);
+  makeSelection("to_month", month);
+  makeSelection("to_day", lastDayOfMonth(month, year));
 }
 
 document.getElementById("ok").addEventListener("click", function() {
@@ -68,8 +85,15 @@ document.getElementById("filter").addEventListener("click", function() {
 });
 
 document.getElementById("filterToday").addEventListener("click", function() {
-  setToSelectsToToday();
   setFromSelectsToToday();
+  setToSelectsToToday();
+
+  document.getElementById("filter").click();
+});
+
+document.getElementById("filterMonth").addEventListener("click", function() {
+  setFromSelectsToStartOfMonth();
+  setToSelectsToEndOfMonth();
 
   document.getElementById("filter").click();
 });
@@ -77,3 +101,4 @@ document.getElementById("filterToday").addEventListener("click", function() {
 document.getElementById("timeNow").addEventListener("click", function() {
   setAddSelectsToNow();
 });
+
