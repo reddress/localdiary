@@ -105,3 +105,8 @@ document.getElementById("timeNow").addEventListener("click", function() {
 document.getElementById("search").addEventListener("click", function() {
   filterSearch(document.getElementById("searchWords").value);
 });
+
+document.getElementById("clearSearch").addEventListener("click", function() {
+  document.getElementById("searchWords").value="";
+  filterSearch("");
+});
