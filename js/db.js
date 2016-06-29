@@ -51,6 +51,30 @@ function filterEntries(from, to) {
   // return output;
 }
 
+function filterSearch(words) {
+  var output = "";
+  for (var i = localStorage.length - 1; i >= 0; i--) {
+    var key = localStorage.key(i);
+    if (key.substr(0, 2) === "LD") {
+      var labelEpoch = parseInt(parseLabel(key));
+      var oneDay = 24 * 60 * 60 * 1000;
+
+      var allEntries = localStorage.getItem(key);
+      // include all entries for matching time
+      if (allEntries.toLowerCase().indexOf(words.toLowerCase()) > -1) {
+        var shortDate = epochToShort(parseInt(labelEpoch));        var entries = allEntries.split("|");
+        for (var e = 0, eLen = entries.length - 1; e < eLen; e++) { 
+          output += '<span class="shortDate">' + shortDate + "</span> " + entries[e] + "<br>";
+        }
+      }
+    }
+  }
+  // log(output);
+  document.getElementById("filtered").innerHTML = output;
+  // return output;
+}
+
+
 function clearLDData() {
   for (var i = localStorage.length - 1; i >= 0; i--) {
     var key = localStorage.key(i);

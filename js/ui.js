@@ -102,3 +102,6 @@ document.getElementById("timeNow").addEventListener("click", function() {
   setAddSelectsToNow();
 });
 
+document.getElementById("search").addEventListener("click", function() {
+  filterSearch(document.getElementById("searchWords").value);
+});
