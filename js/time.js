@@ -32,8 +32,17 @@ function epochToShort(epoch) {
                     'Nov',
                     'Dec',];
 
+  var weekdayNames = ['Su',
+                      'Mo',
+                      'Tu',
+                      'We',
+                      'Th',
+                      'Fr',
+                      'Sa',];                      
+
   var d = new Date(epoch);
-  return d.getDate().toString() + " " +
+  return weekdayNames[d.getDay()] + " " +
+    d.getDate().toString() + " " +
     monthNames[d.getMonth() + 1] + " " +
     pad(d.getHours().toString()) + ":" +
     pad(d.getMinutes().toString());
