@@ -103,10 +103,15 @@ document.getElementById("timeNow").addEventListener("click", function() {
 });
 
 document.getElementById("search").addEventListener("click", function() {
-  filterSearch(document.getElementById("searchWords").value);
+  var searchWords = document.getElementById("searchWords").value;
+  if (searchWords.trim() !== "") {
+    filterSearch(searchWords);
+  } else {
+    document.getElementById("filter").click();
+  }
 });
 
 document.getElementById("clearSearch").addEventListener("click", function() {
   document.getElementById("searchWords").value="";
-  filterSearch("");
+  document.getElementById("filter").click();
 });
